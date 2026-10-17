@@ -3,10 +3,10 @@ on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ps3dev/ps3dev
     steps:
       - uses: actions/checkout@v4
-      - run: make
+      - name: Kompilacja w Dockerze
+        run: docker run --rm -v "$PWD:/src" flipacholas/ps3devextra:latest make
       - uses: actions/upload-artifact@v4
         with:
           name: wynik
