@@ -6,7 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Kompilacja w Dockerze
-        run: docker run --rm -v "$PWD:/src" flipacholas/ps3devextra:latest make
+        run: |
+          docker run --rm -v "$PWD:/src" -w /src flipacholas/ps3devextra:latest make all
+          ls -la
       - uses: actions/upload-artifact@v4
         with:
           name: wynik
